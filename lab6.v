@@ -20,9 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module lab6(
-
-    );
+module lab6;
 endmodule
 
 module sr_latch(
@@ -105,4 +103,19 @@ module counter_3b(
     tff t1(t[1],clk,q[1]);
     assign t[2]=q[0]&q[1];
     tff t2(t[2],clk,q[2]);
+endmodule
+
+module clk_div(
+    input clk,
+    output div
+    );
+    
+    wire [1:0] count, t;
+    
+    assign t[0]=1;
+    assign t[1]=count[0];
+    
+    tff t0(t[0],clk,count[0]);
+    tff t1(t[1],clk,count[1]);
+    tff div0(&count,clk,div);
 endmodule
